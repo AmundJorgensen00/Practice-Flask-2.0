@@ -62,6 +62,10 @@ Try for a few minutes on your own before opening hint 1, that's where
 most of the learning happens. Your progress is saved per task as you move
 between pages, so it's safe to explore.
 
+There's an **EN/NO toggle** in the hint panel and in every hint modal —
+switch to Norwegian if the English technical vocabulary is slowing you
+down. Code stays as code either way; only the explanations are translated.
+
 ## How to check your work
 
 Once you've filled in all four tasks, walk through the app manually:

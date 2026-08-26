@@ -19,10 +19,14 @@ body {
     position: fixed;
     bottom: 6rem;
     right: 1.5rem;
-    width: 280px;
+    width: 320px;
     max-height: 70vh;
     overflow-y: auto;
     z-index: 1050;
+}
+
+#hint-panel-heading {
+    font-size: 0.9rem;
 }
 
 .hint-task + .hint-task {

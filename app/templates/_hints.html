@@ -7,46 +7,69 @@
 <button type="button" id="hint-toggle" class="btn btn-primary rounded-circle hint-fab" aria-label="Open hints">?</button>
 
 <div id="hint-panel" class="hint-panel bg-white border rounded shadow p-3 d-none">
-  <h6 class="mb-3">Need a hand? Pick a task:</h6>
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h6 class="mb-0" id="hint-panel-heading">Need a hand? Pick a task:</h6>
+    <div class="btn-group btn-group-sm" role="group" aria-label="Hint language">
+      <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="en">EN</button>
+      <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="no">NO</button>
+    </div>
+  </div>
 
   <div class="hint-task" data-task="task1">
     <button type="button" class="btn btn-link text-decoration-none p-0 fw-semibold hint-task-name">Task 1 — Email validation</button>
     <div class="hint-task-action d-none mt-2">
-      <button type="button" class="btn btn-sm btn-outline-primary hint-show-btn" data-task="task1" data-bs-toggle="modal" data-bs-target="#hintModal-task1">Show Hint 1/3</button>
+      <button type="button" class="btn btn-sm btn-outline-primary hint-unlock-btn" data-task="task1" data-bs-toggle="modal" data-bs-target="#hintModal-task1">Show Hint 1/3</button>
     </div>
   </div>
 
   <div class="hint-task" data-task="task2">
     <button type="button" class="btn btn-link text-decoration-none p-0 fw-semibold hint-task-name">Task 2 — Password validation</button>
     <div class="hint-task-action d-none mt-2">
-      <button type="button" class="btn btn-sm btn-outline-primary hint-show-btn" data-task="task2" data-bs-toggle="modal" data-bs-target="#hintModal-task2">Show Hint 1/3</button>
+      <button type="button" class="btn btn-sm btn-outline-primary hint-unlock-btn" data-task="task2" data-bs-toggle="modal" data-bs-target="#hintModal-task2">Show Hint 1/3</button>
     </div>
   </div>
 
   <div class="hint-task" data-task="task3">
     <button type="button" class="btn btn-link text-decoration-none p-0 fw-semibold hint-task-name">Task 3 — Login route</button>
     <div class="hint-task-action d-none mt-2">
-      <button type="button" class="btn btn-sm btn-outline-primary hint-show-btn" data-task="task3" data-bs-toggle="modal" data-bs-target="#hintModal-task3">Show Hint 1/3</button>
+      <button type="button" class="btn btn-sm btn-outline-primary hint-unlock-btn" data-task="task3" data-bs-toggle="modal" data-bs-target="#hintModal-task3">Show Hint 1/3</button>
     </div>
   </div>
 
   <div class="hint-task" data-task="task4">
     <button type="button" class="btn btn-link text-decoration-none p-0 fw-semibold hint-task-name">Task 4 — Greeting text</button>
     <div class="hint-task-action d-none mt-2">
-      <button type="button" class="btn btn-sm btn-outline-primary hint-show-btn" data-task="task4" data-bs-toggle="modal" data-bs-target="#hintModal-task4">Show Hint 1/3</button>
+      <button type="button" class="btn btn-sm btn-outline-primary hint-unlock-btn" data-task="task4" data-bs-toggle="modal" data-bs-target="#hintModal-task4">Show Hint 1/3</button>
     </div>
   </div>
 </div>
 
-<!-- One modal per task. hints.js fills #hintBody-<task> as hints unlock. -->
+<!--
+  One modal per task. hints.js fills #hintBody-<task> as hints unlock,
+  and updates the title when the language toggle is used.
+
+  The unlock button and the EN/NO language toggle both appear a second
+  time here in the modal footer, in addition to the panel above —
+  Bootstrap's modal is a full-viewport overlay while open, so the panel
+  copies are not reachable until the modal is closed. hints.js treats
+  every element sharing a class (.hint-unlock-btn, .hint-lang-btn) as one
+  synchronized group, so either copy works and both stay in sync.
+-->
 <div class="modal fade" id="hintModal-task1" tabindex="-1" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Task 1 — Email validation</h5>
+        <h5 class="modal-title" id="hintModalTitle-task1">Task 1 — Email validation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="hintBody-task1"></div>
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Hint language">
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="en">EN</button>
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="no">NO</button>
+        </div>
+        <button type="button" class="btn btn-primary hint-unlock-btn" data-task="task1">Show Hint 1/3</button>
+      </div>
     </div>
   </div>
 </div>
@@ -55,10 +78,17 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Task 2 — Password validation</h5>
+        <h5 class="modal-title" id="hintModalTitle-task2">Task 2 — Password validation</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="hintBody-task2"></div>
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Hint language">
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="en">EN</button>
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="no">NO</button>
+        </div>
+        <button type="button" class="btn btn-primary hint-unlock-btn" data-task="task2">Show Hint 1/3</button>
+      </div>
     </div>
   </div>
 </div>
@@ -67,10 +97,17 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Task 3 — Login route</h5>
+        <h5 class="modal-title" id="hintModalTitle-task3">Task 3 — Login route</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="hintBody-task3"></div>
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Hint language">
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="en">EN</button>
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="no">NO</button>
+        </div>
+        <button type="button" class="btn btn-primary hint-unlock-btn" data-task="task3">Show Hint 1/3</button>
+      </div>
     </div>
   </div>
 </div>
@@ -79,57 +116,125 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Task 4 — Greeting text</h5>
+        <h5 class="modal-title" id="hintModalTitle-task4">Task 4 — Greeting text</h5>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body" id="hintBody-task4"></div>
+      <div class="modal-footer d-flex justify-content-between align-items-center">
+        <div class="btn-group btn-group-sm" role="group" aria-label="Hint language">
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="en">EN</button>
+          <button type="button" class="btn btn-outline-secondary hint-lang-btn" data-lang="no">NO</button>
+        </div>
+        <button type="button" class="btn btn-primary hint-unlock-btn" data-task="task4">Show Hint 1/3</button>
+      </div>
     </div>
   </div>
 </div>
 
 <!--
-  All hint/solution text, as data for hints.js. Wrapped in a Jinja raw
-  block below because the Task 4 solution itself contains literal double
-  curly braces — without that, Jinja would try to evaluate that text
-  instead of treating it as plain data.
+  All hint/solution text and UI labels, as data for hints.js. Wrapped in a
+  Jinja raw block below because the Task 4 solution itself contains
+  literal double curly braces — without that, Jinja would try to evaluate
+  that text instead of treating it as plain data.
+
+  Hints and task names are translated (en/no) because a lot of the
+  vocabulary here is technical and some participants are more comfortable
+  reading it in Norwegian. Code solutions are language-neutral, so they
+  are not duplicated per language.
 -->
 <script id="hint-data" type="application/json">
 {% raw %}
 {
+  "ui": {
+    "en": {
+      "panelHeading": "Need a hand? Pick a task:",
+      "hintLabel": "Hint",
+      "showHint": "Show Hint",
+      "showSolution": "Show Solution",
+      "solutionLabel": "Solution"
+    },
+    "no": {
+      "panelHeading": "Trenger du hjelp? Velg en oppgave:",
+      "hintLabel": "Hint",
+      "showHint": "Vis hint",
+      "showSolution": "Vis løsning",
+      "solutionLabel": "Løsning"
+    }
+  },
   "task1": {
-    "name": "Task 1 — Email validation",
-    "hints": [
-      "You need a function that returns `True` or `False`. Python can test whether one string appears inside another, and strings have a built-in method for checking how they end — which conveniently accepts several options at once.",
-      "Signature is `def is_valid_email(email):`. Two conditions joined with `and`: one using the `in` keyword, one using `.endswith()`. Note that `.endswith()` takes a tuple: `.endswith((\"a\", \"b\"))`. Return the combined result directly.",
-      "Walk through it: `\"@\" in email` gives `True` when the `@` character appears anywhere in the text. `email.endswith((\".com\", \".no\"))` gives `True` when the text finishes with either ending. Both need to be true, so join them with `and` and `return` the answer."
-    ],
+    "name": {
+      "en": "Task 1 — Email validation",
+      "no": "Oppgave 1 — E-postvalidering"
+    },
+    "hints": {
+      "en": [
+        "You need a function that returns `True` or `False`. Python can test whether one string appears inside another, and strings have a built-in method for checking how they end — which conveniently accepts several options at once.",
+        "Signature is `def is_valid_email(email):`. Two conditions joined with `and`: one using the `in` keyword, one using `.endswith()`. Note that `.endswith()` takes a tuple: `.endswith((\"a\", \"b\"))`. Return the combined result directly.",
+        "Walk through it: `\"@\" in email` gives `True` when the `@` character appears anywhere in the text. `email.endswith((\".com\", \".no\"))` gives `True` when the text finishes with either ending. Both need to be true, so join them with `and` and `return` the answer."
+      ],
+      "no": [
+        "Du trenger en funksjon som returnerer `True` eller `False`. Python kan sjekke om én streng finnes inni en annen, og strenger har en innebygd metode for å sjekke hvordan de slutter — som praktisk nok kan ta imot flere alternativer på én gang.",
+        "Signaturen er `def is_valid_email(email):`. To betingelser satt sammen med `and`: én som bruker `in`-nøkkelordet, og én som bruker `.endswith()`. Merk at `.endswith()` tar imot en tuppel: `.endswith((\"a\", \"b\"))`. Returner det kombinerte resultatet direkte.",
+        "Gå gjennom det steg for steg: `\"@\" in email` gir `True` når `@`-tegnet finnes et sted i teksten. `email.endswith((\".com\", \".no\"))` gir `True` når teksten slutter med en av endelsene. Begge må være sanne, så sett dem sammen med `and` og `return` svaret."
+      ]
+    },
     "solution": "return \"@\" in email and email.endswith((\".com\", \".no\"))"
   },
   "task2": {
-    "name": "Task 2 — Password validation",
-    "hints": [
-      "You need to look at the characters one at a time and ask two questions: is any of them a digit, and is any of them uppercase. Python has a built-in that answers \"is any of these true\", and single characters have methods that answer both questions.",
-      "`any(c.isdigit() for c in password)` is the shape for the first condition. Build the second the same way with `.isupper()`, and join them with `and`. A plain `for` loop with two boolean flags works just as well if that reads more clearly to you.",
-      "Explain the loop version first: start with two variables set to `False`, go through every character in the password, and flip the matching variable to `True` when you find a digit or an uppercase letter. At the end, return whether both are `True`. Then `any()` is just the shorter way of writing the same idea."
-    ],
+    "name": {
+      "en": "Task 2 — Password validation",
+      "no": "Oppgave 2 — Passordvalidering"
+    },
+    "hints": {
+      "en": [
+        "You need to look at the characters one at a time and ask two questions: is any of them a digit, and is any of them uppercase. Python has a built-in that answers \"is any of these true\", and single characters have methods that answer both questions.",
+        "`any(c.isdigit() for c in password)` is the shape for the first condition. Build the second the same way with `.isupper()`, and join them with `and`. A plain `for` loop with two boolean flags works just as well if that reads more clearly to you.",
+        "Explain the loop version first: start with two variables set to `False`, go through every character in the password, and flip the matching variable to `True` when you find a digit or an uppercase letter. At the end, return whether both are `True`. Then `any()` is just the shorter way of writing the same idea."
+      ],
+      "no": [
+        "Du må se på tegnene ett og ett og stille to spørsmål: er noen av dem et siffer, og er noen av dem en stor bokstav. Python har en innebygd funksjon som svarer på \"er noen av disse sanne\", og enkelttegn har metoder som svarer på begge spørsmålene.",
+        "`any(c.isdigit() for c in password)` er formen på den første betingelsen. Bygg den andre på samme måte med `.isupper()`, og sett dem sammen med `and`. En vanlig `for`-løkke med to boolske flagg fungerer like bra hvis det er lettere å forstå for deg.",
+        "Se først på løkkeversjonen: start med to variabler satt til `False`, gå gjennom hvert tegn i passordet, og sett riktig variabel til `True` når du finner et siffer eller en stor bokstav. Til slutt returnerer du om begge er `True`. Deretter er `any()` bare en kortere måte å skrive den samme idéen på."
+      ]
+    },
     "solution": "# any() one-liner\nreturn any(c.isdigit() for c in password) and any(c.isupper() for c in password)\n\n# explicit loop, same result\nhas_digit = False\nhas_upper = False\nfor c in password:\n    if c.isdigit():\n        has_digit = True\n    if c.isupper():\n        has_upper = True\nreturn has_digit and has_upper"
   },
   "task3": {
-    "name": "Task 3 — Login route",
-    "hints": [
-      "The route decorator needs `methods=['GET', 'POST']`, and the function body needs to branch on `request.method`. On a POST, the submitted fields arrive in `request.form`, keyed by the `name` attribute of the input elements in `login.html`. The register route directly above yours does all of this already — read it first.",
-      "Structure: `if request.method == 'POST':` then read `request.form['name']` and `request.form['password']`, pass both to the given `check_credentials()`. If it returns `True`, `return render_template('home.html', ...)` with the name and age. If not, return `render_template('login.html', error=...)`. Outside the `if`, return the plain `render_template('login.html')` for the GET case.",
-      "Walk through the request cycle: opening the page in a browser is a GET, so the function runs and returns the empty form. Pressing Submit sends a POST to the same URL, so the same function runs again — but this time `request.method` is `'POST'` and the typed values are sitting in `request.form`. `request.form['name']` matches `<input name=\"name\">` in the template. The keyword arguments in `render_template` are exactly what becomes available inside the HTML as `{{ }}`."
-    ],
+    "name": {
+      "en": "Task 3 — Login route",
+      "no": "Oppgave 3 — Login-ruten"
+    },
+    "hints": {
+      "en": [
+        "The route decorator needs `methods=['GET', 'POST']`, and the function body needs to branch on `request.method`. On a POST, the submitted fields arrive in `request.form`, keyed by the `name` attribute of the input elements in `login.html`. The register route directly above yours does all of this already — read it first.",
+        "Structure: `if request.method == 'POST':` then read `request.form['name']` and `request.form['password']`, pass both to the given `check_credentials()`. If it returns `True`, `return render_template('home.html', ...)` with the name and age. If not, return `render_template('login.html', error=...)`. Outside the `if`, return the plain `render_template('login.html')` for the GET case.",
+        "Walk through the request cycle: opening the page in a browser is a GET, so the function runs and returns the empty form. Pressing Submit sends a POST to the same URL, so the same function runs again — but this time `request.method` is `'POST'` and the typed values are sitting in `request.form`. `request.form['name']` matches `<input name=\"name\">` in the template. The keyword arguments in `render_template` are exactly what becomes available inside the HTML as `{{ }}`."
+      ],
+      "no": [
+        "Rute-dekoratøren trenger `methods=['GET', 'POST']`, og funksjonskroppen må forgrene seg basert på `request.method`. Ved en POST kommer de innsendte feltene i `request.form`, med nøkler fra `name`-attributtet til input-elementene i `login.html`. Register-ruten rett over din gjør allerede alt dette — les den først.",
+        "Struktur: `if request.method == 'POST':` deretter leser du `request.form['name']` og `request.form['password']`, og sender begge til den gitte `check_credentials()`. Hvis den returnerer `True`, `return render_template('home.html', ...)` med navn og alder. Hvis ikke, returner `render_template('login.html', error=...)`. Utenfor `if`-en returnerer du den enkle `render_template('login.html')` for GET-tilfellet.",
+        "Gå gjennom request-syklusen: å åpne siden i en nettleser er en GET, så funksjonen kjører og returnerer det tomme skjemaet. Å trykke Submit sender en POST til samme URL, så samme funksjon kjører igjen — men denne gangen er `request.method` lik `'POST'`, og de innskrevne verdiene ligger i `request.form`. `request.form['name']` samsvarer med `<input name=\"name\">` i malen. Nøkkelordargumentene i `render_template` er nøyaktig det som blir tilgjengelig inni HTML-en som `{{ }}`."
+      ]
+    },
     "solution": "@app.route(\"/login\", methods=[\"GET\", \"POST\"])\ndef login():\n    if request.method == \"POST\":\n        name = request.form[\"name\"]\n        password = request.form[\"password\"]\n\n        if check_credentials(name, password):\n            # Correct credentials: show the home page with the\n            # registered name and age.\n            return render_template(\"home.html\", name=session[\"name\"], age=session[\"age\"])\n\n        # Wrong credentials: re-render the login form with an error.\n        return render_template(\"login.html\", error=\"Wrong name or password.\")\n\n    # GET: just show the empty login form.\n    return render_template(\"login.html\")"
   },
   "task4": {
-    "name": "Task 4 — Greeting text",
-    "hints": [
-      "`{{ }}` prints a value into the HTML, and what goes inside is an expression, not just a variable name — you can do arithmetic in there.",
-      "`{{ name }}` gives you the name. For the year, you want the age plus one, written inside the same kind of brackets. Age is already stored as a number, so no conversion is needed.",
-      "Everything outside the double curly brackets is plain text sent to the browser as-is. Everything inside `{{ }}` is evaluated by Jinja on the server before the page is sent — so `{{ age + 1 }}` sends the result of that sum, not the text \"age + 1\"."
-    ],
+    "name": {
+      "en": "Task 4 — Greeting text",
+      "no": "Oppgave 4 — Hilsningsteksten"
+    },
+    "hints": {
+      "en": [
+        "`{{ }}` prints a value into the HTML, and what goes inside is an expression, not just a variable name — you can do arithmetic in there.",
+        "`{{ name }}` gives you the name. For the year, you want the age plus one, written inside the same kind of brackets. Age is already stored as a number, so no conversion is needed.",
+        "Everything outside the double curly brackets is plain text sent to the browser as-is. Everything inside `{{ }}` is evaluated by Jinja on the server before the page is sent — so `{{ age + 1 }}` sends the result of that sum, not the text \"age + 1\"."
+      ],
+      "no": [
+        "`{{ }}` skriver en verdi inn i HTML-en, og det som står inni er et uttrykk, ikke bare et variabelnavn — du kan gjøre regneoperasjoner der inne.",
+        "`{{ name }}` gir deg navnet. For alderen neste år vil du ha alder pluss én, skrevet inni samme type klammer. Alder er allerede lagret som et tall, så ingen konvertering er nødvendig.",
+        "Alt utenfor de doble krøllparentesene er ren tekst som sendes til nettleseren akkurat som den står. Alt inni `{{ }}` blir regnet ut av Jinja på serveren før siden sendes — så `{{ age + 1 }}` sender resultatet av summen, ikke teksten \"age + 1\"."
+      ]
+    },
     "solution": "Hello {{ name }}, congratulations on logging in. You will turn {{ age + 1 }} next year."
   }
 }
