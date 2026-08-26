@@ -4,7 +4,7 @@
 
 This is the hands-on exercise that follows it.gruppen's introductory Flask
 presentation (`Introduction_to_Flask_EN.pptx`, included in this repo). It's a
-small three-page app — register, log in, see a welcome message — with four
+small three-page app (register, log in, see a welcome message) with four
 pieces of logic missing for you to fill in. Everything else already works,
 so you can run the app immediately and see exactly what you're building
 towards.
@@ -54,11 +54,11 @@ GET/POST pattern. Task 4 is a couple of `{{ }}` expressions in a template.
 Every page has a **Hint button in the bottom-right corner**. Click it to
 see the four tasks, click a task to reveal its hint button, and click that
 to open a modal with hint 1. Hints get more specific each time you click
-again — hint 1 just names the concept, hint 2 gives you the structure,
+again. Hint 1 just names the concept, hint 2 gives you the structure,
 hint 3 walks through the logic line by line. After the third hint the
 button turns into **Show Solution**, which shows the full answer.
 
-Try for a few minutes on your own before opening hint 1 — that's where
+Try for a few minutes on your own before opening hint 1, that's where
 most of the learning happens. Your progress is saved per task as you move
 between pages, so it's safe to explore.
 
