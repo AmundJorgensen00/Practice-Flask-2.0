@@ -33,10 +33,32 @@ document.addEventListener("DOMContentLoaded", function () {
     sessionStorage.setItem(storageKey(taskKey), JSON.stringify(state));
   }
 
+  // Splits text on `backtick` spans and renders those as <code> elements,
+  // so inline code/commands in hint text stand out the same way the
+  // solution block does — everything else stays as plain text nodes.
+  function appendFormattedText(container, text) {
+    var parts = text.split(/`([^`]+)`/);
+    parts.forEach(function (part, i) {
+      if (part === "") {
+        return;
+      }
+      if (i % 2 === 1) {
+        var code = document.createElement("code");
+        code.textContent = part;
+        container.appendChild(code);
+      } else {
+        container.appendChild(document.createTextNode(part));
+      }
+    });
+  }
+
   function appendHintParagraph(taskKey, hintIndex) {
     var body = document.getElementById("hintBody-" + taskKey);
     var p = document.createElement("p");
-    p.textContent = "Hint " + (hintIndex + 1) + ": " + hintData[taskKey].hints[hintIndex];
+    var label = document.createElement("strong");
+    label.textContent = "Hint " + (hintIndex + 1) + ": ";
+    p.appendChild(label);
+    appendFormattedText(p, hintData[taskKey].hints[hintIndex]);
     body.appendChild(p);
   }
 

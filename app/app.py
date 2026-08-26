@@ -55,7 +55,7 @@ def register():
     return render_template("register.html")
 
 
-# TASK 3: Write the /login route.
+# TODO TASK 3: Write the /login route.
 #
 # It must:
 #   - accept both GET and POST (methods=["GET", "POST"])

@@ -99,9 +99,9 @@
   "task1": {
     "name": "Task 1 — Email validation",
     "hints": [
-      "You need a function that returns True or False. Python can test whether one string appears inside another, and strings have a built-in method for checking how they end — which conveniently accepts several options at once.",
-      "Signature is def is_valid_email(email):. Two conditions joined with and: one using the in keyword, one using .endswith(). Note that .endswith() takes a tuple: .endswith((\"a\", \"b\")). Return the combined result directly.",
-      "Walk through it: \"@\" in email gives True when the @ character appears anywhere in the text. email.endswith((\".com\", \".no\")) gives True when the text finishes with either ending. Both need to be true, so join them with and and return the answer."
+      "You need a function that returns `True` or `False`. Python can test whether one string appears inside another, and strings have a built-in method for checking how they end — which conveniently accepts several options at once.",
+      "Signature is `def is_valid_email(email):`. Two conditions joined with `and`: one using the `in` keyword, one using `.endswith()`. Note that `.endswith()` takes a tuple: `.endswith((\"a\", \"b\"))`. Return the combined result directly.",
+      "Walk through it: `\"@\" in email` gives `True` when the `@` character appears anywhere in the text. `email.endswith((\".com\", \".no\"))` gives `True` when the text finishes with either ending. Both need to be true, so join them with `and` and `return` the answer."
     ],
     "solution": "return \"@\" in email and email.endswith((\".com\", \".no\"))"
   },
@@ -109,26 +109,26 @@
     "name": "Task 2 — Password validation",
     "hints": [
       "You need to look at the characters one at a time and ask two questions: is any of them a digit, and is any of them uppercase. Python has a built-in that answers \"is any of these true\", and single characters have methods that answer both questions.",
-      "any(c.isdigit() for c in password) is the shape for the first condition. Build the second the same way with .isupper(), and join them with and. A plain for loop with two boolean flags works just as well if that reads more clearly to you.",
-      "Explain the loop version first: start with two variables set to False, go through every character in the password, and flip the matching variable to True when you find a digit or an uppercase letter. At the end, return whether both are True. Then any() is just the shorter way of writing the same idea."
+      "`any(c.isdigit() for c in password)` is the shape for the first condition. Build the second the same way with `.isupper()`, and join them with `and`. A plain `for` loop with two boolean flags works just as well if that reads more clearly to you.",
+      "Explain the loop version first: start with two variables set to `False`, go through every character in the password, and flip the matching variable to `True` when you find a digit or an uppercase letter. At the end, return whether both are `True`. Then `any()` is just the shorter way of writing the same idea."
     ],
     "solution": "# any() one-liner\nreturn any(c.isdigit() for c in password) and any(c.isupper() for c in password)\n\n# explicit loop, same result\nhas_digit = False\nhas_upper = False\nfor c in password:\n    if c.isdigit():\n        has_digit = True\n    if c.isupper():\n        has_upper = True\nreturn has_digit and has_upper"
   },
   "task3": {
     "name": "Task 3 — Login route",
     "hints": [
-      "The route decorator needs methods=['GET', 'POST'], and the function body needs to branch on request.method. On a POST, the submitted fields arrive in request.form, keyed by the name attribute of the input elements in login.html. The register route directly above yours does all of this already — read it first.",
-      "Structure: if request.method == 'POST': then read request.form['name'] and request.form['password'], pass both to the given check_credentials(). If it returns True, return render_template('home.html', ...) with the name and age. If not, return render_template('login.html', error=...). Outside the if, return the plain render_template('login.html') for the GET case.",
-      "Walk through the request cycle: opening the page in a browser is a GET, so the function runs and returns the empty form. Pressing Submit sends a POST to the same URL, so the same function runs again — but this time request.method is 'POST' and the typed values are sitting in request.form. request.form['name'] matches <input name=\"name\"> in the template. The keyword arguments in render_template are exactly what becomes available inside the HTML as {{ }}."
+      "The route decorator needs `methods=['GET', 'POST']`, and the function body needs to branch on `request.method`. On a POST, the submitted fields arrive in `request.form`, keyed by the `name` attribute of the input elements in `login.html`. The register route directly above yours does all of this already — read it first.",
+      "Structure: `if request.method == 'POST':` then read `request.form['name']` and `request.form['password']`, pass both to the given `check_credentials()`. If it returns `True`, `return render_template('home.html', ...)` with the name and age. If not, return `render_template('login.html', error=...)`. Outside the `if`, return the plain `render_template('login.html')` for the GET case.",
+      "Walk through the request cycle: opening the page in a browser is a GET, so the function runs and returns the empty form. Pressing Submit sends a POST to the same URL, so the same function runs again — but this time `request.method` is `'POST'` and the typed values are sitting in `request.form`. `request.form['name']` matches `<input name=\"name\">` in the template. The keyword arguments in `render_template` are exactly what becomes available inside the HTML as `{{ }}`."
     ],
     "solution": "@app.route(\"/login\", methods=[\"GET\", \"POST\"])\ndef login():\n    if request.method == \"POST\":\n        name = request.form[\"name\"]\n        password = request.form[\"password\"]\n\n        if check_credentials(name, password):\n            # Correct credentials: show the home page with the\n            # registered name and age.\n            return render_template(\"home.html\", name=session[\"name\"], age=session[\"age\"])\n\n        # Wrong credentials: re-render the login form with an error.\n        return render_template(\"login.html\", error=\"Wrong name or password.\")\n\n    # GET: just show the empty login form.\n    return render_template(\"login.html\")"
   },
   "task4": {
     "name": "Task 4 — Greeting text",
     "hints": [
-      "{{ }} prints a value into the HTML, and what goes inside is an expression, not just a variable name — you can do arithmetic in there.",
-      "{{ name }} gives you the name. For the year, you want the age plus one, written inside the same kind of brackets. Age is already stored as a number, so no conversion is needed.",
-      "Everything outside the double curly brackets is plain text sent to the browser as-is. Everything inside {{ }} is evaluated by Jinja on the server before the page is sent — so {{ age + 1 }} sends the *result* of that sum, not the text \"age + 1\"."
+      "`{{ }}` prints a value into the HTML, and what goes inside is an expression, not just a variable name — you can do arithmetic in there.",
+      "`{{ name }}` gives you the name. For the year, you want the age plus one, written inside the same kind of brackets. Age is already stored as a number, so no conversion is needed.",
+      "Everything outside the double curly brackets is plain text sent to the browser as-is. Everything inside `{{ }}` is evaluated by Jinja on the server before the page is sent — so `{{ age + 1 }}` sends the result of that sum, not the text \"age + 1\"."
     ],
     "solution": "Hello {{ name }}, congratulations on logging in. You will turn {{ age + 1 }} next year."
   }
