@@ -60,13 +60,12 @@ def register():
 # It must:
 #   - accept both GET and POST (methods=["GET", "POST"])
 #   - on GET, render "login.html"
-#   - on POST, read request.form["name"] and request.form["password"],
+#   - on POST, read the name and the password from the form,
 #     call the given check_credentials(name, password), and:
 #       - if it returns True: render "home.html", passing the registered
-#         name and age (session["name"], session["age"]) as keyword
-#         arguments
+#         name and age as keyword arguments
 #       - if it returns False: re-render "login.html" with an error
-#         message, e.g. render_template("login.html", error="...")
+#         message
 #
 # register() above follows exactly this GET/POST pattern — read it first.
 @app.route("/login", methods=["GET", "POST"])
